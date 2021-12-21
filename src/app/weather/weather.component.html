@@ -2,7 +2,7 @@
     <form class="container input-container">
         <label class="fs-3 form-label mb-3">Weather at your fingertips.</label>
         <!-- <input type="text" class="form-control" formControlName="city" /> -->
-        <input type="text" placeholder="Start Typing..." matInput [formControl]="cityForm" [matAutocomplete]="auto"
+        <input type="text" placeholder="Enter City..." matInput [formControl]="cityForm" [matAutocomplete]="auto"
             class="form-control bg-transparent" [ngClass]="{'text-white border-grey': getTheme()}" />
         <mat-autocomplete #auto="matAutocomplete" classlist='bg-transparent text-white'
             [ngClass]="{'bg-transparent': getTheme()}">
