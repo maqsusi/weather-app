@@ -1,0 +1,9 @@
+.outer-container {
+  /* height: 100% !important; */
+  transition: background-color 0.5s linear;
+}
+
+main {
+  min-height: fit-content !important;
+  height: fit-content !important;
+}

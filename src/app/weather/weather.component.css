@@ -1,0 +1,17 @@
+@media (min-width: 993px) {
+  * {
+    font-size: large;
+  }
+
+  .input-container {
+    width: 45%;
+  }
+}
+
+.border-grey {
+  border-color: lightslategray !important;
+}
+
+.weather-container {
+  height: 100% !important;
+}

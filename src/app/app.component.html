@@ -1,0 +1,5 @@
+<app-header></app-header>
+<main class="container-fluid h-100" [ngClass]="{'text-white bg-dark bg-gradient': getTheme()}">
+    <router-outlet></router-outlet>
+</main>
+<app-footer class="mt-auto" [ngClass]="{'text-white bg-dark ': getTheme()}"></app-footer>

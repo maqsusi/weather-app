@@ -1,0 +1,104 @@
+<!-- {{weatherDetails | json}} -->
+
+<!-- <img [src]='icon_url'> -->
+
+<div class="container main-container mt-3">
+
+    <!-- <div class="d-flex flex-column row">
+        <span>Dec 21, 11:34 am</span>
+        <h2 class="mb-0">{{cityName}}, {{cityCountry}}</h2>
+    </div>
+    <div class="fw-bold row">
+        <span>Feels like {{weatherDetails?.current?.feels_like}}&#176;C.
+            {{weatherDetails?.current?.weather[0]?.description |
+            titlecase}}</span>
+    </div>
+    <div class="d-flex row">
+        <div class="d-flex col-4">
+            <div class="d-flex align-items-center"><img [src]='icon_url' height='50' width="50"></div>
+            <div class="d-flex align-items-center fs-3">{{weatherDetails?.current?.temp}}&#176;C</div>
+        </div>
+        <div class="d-flex justify-content-between flex-column flex-md-row flex-wrap col-8 align-items-md-center">
+            <span>Wind: {{weatherDetails?.current?.wind_speed}}m/s</span>
+            <span>Pressure: {{weatherDetails?.current?.pressure}}Pa</span>
+            <span>Humidity: {{weatherDetails?.current?.humidity}}%</span>
+            <span>UV: {{weatherDetails?.current?.uvi}}</span>
+            <span>Dew Point: {{weatherDetails?.current?.humidity}}&#176;C</span>
+            <span>Visibility: {{weatherDetails?.current?.visibility}}m</span>
+        </div>
+
+    </div> -->
+
+    <div class="card bg-transparent" [ngClass]="{'border-grey': getTheme()}">
+        <div class="card-body">
+
+            <h2 class="text-center mb-0">{{cityName}}, <img
+                    src="https://flagcdn.com/16x12/{{cityCountry | lowercase}}.png" height="15" width="15" />
+
+            </h2>
+            <div class="card-text">
+                <div class="d-flex justify-content-center container-fluid">
+                    <div class="row container-fluid">
+                        <!-- <div class="col-12 col-lg-6 row"> -->
+                        <div class="d-flex px-0  justify-content-end align-items-center col-6">
+                            <img [src]='icon_url' class="img-lg-fluid icon" height='50' width="50">
+                        </div>
+                        <div class="d-flex px-0 justify-content-start align-items-center fs-3 col-6 ">
+                            {{weatherDetails?.current?.temp}}&#176;C
+                        </div>
+                    </div>
+                    <!-- <div class="col-12 col-lg-6 d-none d-lg-flex align-items-center justify-content-end ">
+                            <h2>{{weatherDetails?.date | date:'ccc, MMM d'}}
+                                {{weatherDetails?.date | date:'shortTime'}}</h2>
+                        </div> -->
+                    <!-- </div> -->
+
+                </div>
+                <div class="fw-bold d-flex justify-content-center">
+                    <span>Feels like {{weatherDetails?.current?.feels_like}}&#176;C.
+                        {{weatherDetails?.current?.weather[0]?.description |
+                        titlecase}}</span>
+                </div>
+                <div class="d-flex justify-content-around align-items-center row flex-wrap container mt-3">
+                    <span class="col-6 col-md-4 text-start my-1">Wind: {{weatherDetails?.current?.wind_speed}}m/s</span>
+                    <span class="col-6 col-md-4 text-md-center text-start my-1 text-end">Pressure:
+                        {{weatherDetails?.current?.pressure}}Pa</span>
+                    <span class="col-6 col-md-4 text-start my-1 text-md-end">Humidity:
+                        {{weatherDetails?.current?.humidity}}%</span>
+                    <span class="col-6 col-md-4  text-md-start my-1 text-end">UV:
+                        {{weatherDetails?.current?.uvi}}</span>
+                    <span class="col-6 col-md-4 text-md-center text-start my-1">Dew Point:
+                        {{weatherDetails?.current?.humidity}}&#176;C</span>
+                    <span class="col-6 col-md-4 text-start my-1 text-md-end text-end">Visibility:
+                        {{weatherDetails?.current?.visibility}}m</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container forecast">
+
+        <div class="row">
+            <label class="fs-5 mx-0 px-0 my-2">8-Day Forecast</label>
+            <table>
+                <tr *ngFor='let forecast of forecastList'>
+                    <td class="text-start">
+                        {{forecast.date | date: 'ccc, MMM d'}}
+                    </td>
+                    <td class="text-center">
+                        <img [src]="forecast.icon_url" alt="icon" height="28" width="28" class="forecast-icon">
+                        {{forecast.max}} /
+                        {{forecast.min}}&#176;C
+                    </td>
+                    <td class="text-end">
+                        {{forecast.description}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+
+</div>

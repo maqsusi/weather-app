@@ -1,0 +1,42 @@
+@media (min-width: 1300px) {
+  .icon {
+    height: 100px;
+    width: 100px;
+  }
+
+  * {
+    font-size: large;
+  }
+
+  .main-container {
+    width: 45%;
+  }
+
+  .forecast-icon {
+    height: 50px;
+    width: 50px;
+  }
+  .forecast {
+    font-size: large;
+  }
+}
+
+.time {
+  font-size: 14px;
+}
+
+.border-grey {
+  border-color: lightslategray !important;
+}
+
+.card {
+  transition: border-color 0.5s linear;
+}
+
+.main-container {
+  height: fit-content !important;
+}
+
+.forecast {
+  font-size: small;
+}
