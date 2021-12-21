@@ -4,10 +4,10 @@
         <!-- <input type="text" class="form-control" formControlName="city" /> -->
         <input type="text" placeholder="Start Typing..." matInput [formControl]="cityForm" [matAutocomplete]="auto"
             class="form-control bg-transparent" [ngClass]="{'text-white border-grey': getTheme()}" />
-        <mat-autocomplete #auto="matAutocomplete" classlist='bg-transparent text-white' class="bg-transparent"
-            [ngClass]="{'text-white ': getTheme()}">
+        <mat-autocomplete #auto="matAutocomplete" classlist='bg-transparent text-white'
+            [ngClass]="{'bg-transparent': getTheme()}">
             <mat-option *ngFor="let city of cities" [value]="city.name" (onSelectionChange)='logSelection($event, city)'
-                [ngClass]="{'text-white': getTheme()}">{{
+                [ngClass]="{'text-dark': getTheme()}">{{
                 city?.name }}
                 <img src="https://flagcdn.com/16x12/{{city?.sys?.country | lowercase}}.png" />
             </mat-option>
