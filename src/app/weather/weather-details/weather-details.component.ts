@@ -68,7 +68,7 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
         return obj;
       });
 
-      console.error(this.forecastList);
+      // console.error(this.forecastList);
     }
   }
 
@@ -92,15 +92,15 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
     } else {
       if (searchHistory.length >= 3) {
         searchHistory.length = 3;
-        if (
-          searchHistory.filter(
-            (el) => el.city === this.cityName && el.country === this.cityCountry
-          ).length > 0
-        ) {
-          console.error(searchHistory);
-          return;
-        }
         searchHistory.pop();
+      }
+      if (
+        searchHistory.filter(
+          (el) => el.city === this.cityName && el.country === this.cityCountry
+        ).length > 0
+      ) {
+        console.error(searchHistory);
+        return;
       }
       searchHistory.unshift(searchObject);
       localStorage.setItem('weather_history', JSON.stringify(searchHistory));
