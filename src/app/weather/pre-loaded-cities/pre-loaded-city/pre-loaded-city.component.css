@@ -1,0 +1,7 @@
+.border-grey {
+  border-color: lightslategray !important;
+}
+
+.card {
+  transition: border-color 0.5s linear;
+}

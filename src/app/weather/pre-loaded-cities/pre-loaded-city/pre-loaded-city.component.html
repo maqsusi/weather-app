@@ -1,0 +1,16 @@
+<div class="card bg-transparent" [ngClass]="{'border-grey': getTheme()}">
+    <div class="card-body bg-transparent pb-0">
+        <h6 class="card-title">
+            {{weatherDetails?.city}} <img src="https://flagcdn.com/16x12/{{weatherDetails?.country | lowercase}}.png"
+                height="15" width="15" />
+        </h6>
+        <div class="card-text d-flex">
+            <p class="align-middle"><img [src]="weatherDetails['icon_url']" class="img-lg-fluid icon" height='45'
+                    width="45" />
+                <span class="align-middle">{{weatherDetails?.temp}}&#176;C</span>
+            </p>
+            <p></p>
+            <p></p>
+        </div>
+    </div>
+</div>

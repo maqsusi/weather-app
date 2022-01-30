@@ -1,0 +1,13 @@
+@media (min-width: 993px) {
+  * {
+    font-size: large;
+  }
+
+  .card-container {
+    width: 45%;
+  }
+}
+
+.cursor-class {
+  cursor: pointer;
+}

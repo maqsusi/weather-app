@@ -1,5 +1,5 @@
 <div class="d-flex flex-column weather-container mt-3 h-100">
-    <form class="container input-container">
+    <form class="container input-container px-0">
         <label class="fs-3 form-label mb-3">Weather at your fingertips.</label>
         <!-- <input type="text" class="form-control" formControlName="city" /> -->
         <input type="text" placeholder="Enter City..." matInput [formControl]="cityForm" [matAutocomplete]="auto"
@@ -7,7 +7,7 @@
         <mat-autocomplete #auto="matAutocomplete" classlist='bg-transparent text-white'
             [ngClass]="{'bg-transparent': getTheme()}">
             <mat-option *ngFor="let city of cities" [value]="city.name" (onSelectionChange)='logSelection($event, city)'
-                [ngClass]="{'text-dark': getTheme()}">{{
+                [ngClass]="{'text-light': getTheme(), 'bg-dark': getTheme()}">{{
                 city?.name }}
                 <img src="https://flagcdn.com/16x12/{{city?.sys?.country | lowercase}}.png" />
             </mat-option>

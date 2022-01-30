@@ -17,6 +17,8 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
   coordSubscription: Subscription;
   weatherDetails: any;
   forecastList = [];
+  lat: string;
+  lon: string;
   constructor(
     private route: ActivatedRoute,
     private weatherService: WeatherService,
@@ -28,6 +30,8 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
       // console.error(data);
       this.cityName = data.name;
       this.cityCountry = data.country;
+      this.lat = data.lat;
+      this.lon = data.lon;
       this.getWeather(data.lat, data.lon);
     });
   }
@@ -47,6 +51,7 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
       this.weatherDetails.offset = this.weatherDetails.timezone_offset / 3600;
       this.icon_url = `${Constants.ICON_URL}${this.weatherDetails.current.weather[0].icon}@2x.png`;
       this.getForecast(this.weatherDetails.daily);
+      this.handleSearchHistory();
     });
   }
 
@@ -63,11 +68,42 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
         return obj;
       });
 
-      // console.error(this.forecastList);
+      console.error(this.forecastList);
     }
   }
 
   getTheme() {
     return this.theme.getTheme();
+  }
+
+  handleSearchHistory() {
+    let searchHistory: any[] = JSON.parse(
+      localStorage.getItem('weather_history')
+    );
+    const searchObject = {};
+    searchObject['city'] = this.cityName;
+    searchObject['country'] = this.cityCountry;
+    searchObject['lat'] = this.lat;
+    searchObject['lon'] = this.lon;
+    if (!searchHistory || searchHistory.length === 0) {
+      const newSearchHistory = [];
+      newSearchHistory.push(searchObject);
+      localStorage.setItem('weather_history', JSON.stringify(newSearchHistory));
+    } else {
+      if (searchHistory.length >= 3) {
+        searchHistory.length = 3;
+        if (
+          searchHistory.filter(
+            (el) => el.city === this.cityName && el.country === this.cityCountry
+          ).length > 0
+        ) {
+          console.error(searchHistory);
+          return;
+        }
+        searchHistory.pop();
+      }
+      searchHistory.unshift(searchObject);
+      localStorage.setItem('weather_history', JSON.stringify(searchHistory));
+    }
   }
 }

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light" [ngClass]="{'text-white bg-dark': getTheme()}">
     <div class="container">
-        <a class='navbar-brand' [ngClass]="{'text-white': getTheme()}">Weather</a>
+        <a class='navbar-brand' [ngClass]="{'text-white': getTheme()}" [routerLink]="['/']">Weamther</a>
         <mat-slide-toggle (change)='toggleMode($event)'>{{toggleText}}</mat-slide-toggle>
     </div>
 </nav>
