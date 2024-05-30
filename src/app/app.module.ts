@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { WeatherComponent } from './weather/weather.component';
 import { WeatherDetailsComponent } from './weather/weather-details/weather-details.component';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -31,7 +30,6 @@ import { PreLoadedCityComponent } from './weather/pre-loaded-cities/pre-loaded-c
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgSelectModule,
     FormsModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,

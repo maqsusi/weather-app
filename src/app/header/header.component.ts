@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   toggleMode(data) {
-    console.log('Mode toggled!', data);
     this.theme.changeTheme();
   }
 

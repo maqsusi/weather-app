@@ -1,4 +1,4 @@
-<div class="container-fluid card-container px-0 mt-3" *ngIf='searchHistory && searchHistory.length > 0'>
+<div class="container-fluid card-container px-0 px-0 mt-3" *ngIf='searchHistory && searchHistory.length > 0'>
     <h6>Your Previous Searches</h6>
     <div class="container-fluid px-0 mb-4" *ngFor='let city of searchHistory'>
         <app-pre-loaded-city class="cursor-class" [cityDetails]='city' (click)='onCityClick(city)'>

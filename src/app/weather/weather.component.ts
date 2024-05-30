@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, FormGroup } from '@angular/forms';
 import { WeatherService } from '../services/weather.service';
 import { City } from './city';
 import {
@@ -20,11 +20,11 @@ import { ThemeService } from '../services/theme.service';
   styleUrls: ['./weather.component.css'],
 })
 export class WeatherComponent implements OnInit {
-  cityForm = new FormControl();
+  cityForm = new UntypedFormControl();
   cities: City[] = [];
   options: string[] = ['One', 'Two', 'Three'];
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private weatherService: WeatherService,
     private router: Router,
     private theme: ThemeService

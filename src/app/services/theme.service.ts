@@ -12,7 +12,6 @@ export class ThemeService {
 
   changeTheme() {
     this.dark = !this.dark;
-    console.log('the theme is now ', this.dark);
     if (this.dark) {
       this.renderer.addClass(document.body, 'bg-dark');
     } else {
