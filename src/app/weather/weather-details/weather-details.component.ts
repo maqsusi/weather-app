@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ThemeService } from 'src/app/services/theme.service';
 import { WeatherService } from 'src/app/services/weather.service';
 import { Constants } from '../../constants';
+import { Store } from '@ngrx/store';
+import { selectCity } from 'src/app/store/city/city.selectors';
+import { City } from '../city';
 
 @Component({
   selector: 'app-weather-details',
@@ -19,13 +22,17 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
   forecastList = [];
   lat: string;
   lon: string;
+
+  city$: Observable<any>;
   constructor(
     private route: ActivatedRoute,
     private weatherService: WeatherService,
-    private theme: ThemeService
+    private theme: ThemeService,
+    private _store: Store
   ) {}
 
   ngOnInit(): void {
+    this.city$ = this._store.select(selectCity);
     this.coordSubscription = this.route.queryParams.subscribe((data) => {
       // console.error(data);
       this.cityName = data.name;
@@ -51,7 +58,6 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
       this.weatherDetails.offset = this.weatherDetails.timezone_offset / 3600;
       this.icon_url = `${Constants.ICON_URL}${this.weatherDetails.current.weather[0].icon}@2x.png`;
       this.getForecast(this.weatherDetails.daily);
-      this.handleSearchHistory();
     });
   }
 
@@ -74,36 +80,5 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
 
   getTheme() {
     return this.theme.getTheme();
-  }
-
-  handleSearchHistory() {
-    let searchHistory: any[] = JSON.parse(
-      localStorage.getItem('weather_history')
-    );
-    const searchObject = {};
-    searchObject['city'] = this.cityName;
-    searchObject['country'] = this.cityCountry;
-    searchObject['lat'] = this.lat;
-    searchObject['lon'] = this.lon;
-    if (!searchHistory || searchHistory.length === 0) {
-      const newSearchHistory = [];
-      newSearchHistory.push(searchObject);
-      localStorage.setItem('weather_history', JSON.stringify(newSearchHistory));
-    } else {
-      if (searchHistory.length >= 3) {
-        searchHistory.length = 3;
-        searchHistory.pop();
-      }
-      if (
-        searchHistory.filter(
-          (el) => el.city === this.cityName && el.country === this.cityCountry
-        ).length > 0
-      ) {
-        console.error(searchHistory);
-        return;
-      }
-      searchHistory.unshift(searchObject);
-      localStorage.setItem('weather_history', JSON.stringify(searchHistory));
-    }
   }
 }

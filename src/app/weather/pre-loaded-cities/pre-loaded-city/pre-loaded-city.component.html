@@ -1,7 +1,7 @@
 <div class="card bg-transparent" [ngClass]="{'border-grey': getTheme()}">
     <div class="card-body bg-transparent pb-0">
         <h6 class="card-title">
-            {{weatherDetails?.city}} <img src="https://flagcdn.com/16x12/{{weatherDetails?.country | lowercase}}.png"
+            {{weatherDetails?.name}} <img src="https://flagcdn.com/16x12/{{weatherDetails?.country | lowercase}}.png"
                 height="15" width="15" />
         </h6>
         <div class="card-text d-flex">
