@@ -27,7 +27,7 @@ export class PreLoadedCityComponent implements OnInit {
     this.weatherService.getWeatherByLatAndLog(lat, lon).subscribe((data) => {
       // console.log(data);
       this.weatherDetails['temp'] = Math.round(data['current']['temp']);
-      this.weatherDetails['city'] = this.cityDetails['city'];
+      this.weatherDetails['name'] = this.cityDetails['name'];
       this.weatherDetails['country'] = this.cityDetails['country'];
       this.weatherDetails['main'] = data['current']['weather'][0]['main'];
       this.weatherDetails['icon'] = data['current']['weather'][0]['icon'];

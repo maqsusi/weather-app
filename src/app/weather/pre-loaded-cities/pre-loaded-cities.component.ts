@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { cityClick } from 'src/app/store/city/city.actions';
+import { selectPreloadedCities } from 'src/app/store/city/city.selectors';
 
 @Component({
   selector: 'app-pre-loaded-cities',
@@ -7,23 +11,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./pre-loaded-cities.component.css'],
 })
 export class PreLoadedCitiesComponent implements OnInit {
-  searchHistory: any[] = [];
-  constructor(private router: Router) {
-    this.searchHistory = JSON.parse(localStorage.getItem('weather_history'));
+  searchHistory$: Observable<any[]>;
+  constructor(private router: Router, private _store: Store) {
+    this.searchHistory$ = this._store.select(selectPreloadedCities);
     // console.log(this.searchHistory);
   }
 
   ngOnInit(): void {}
 
-  onCityClick(cityDetails: any) {
+  onCityClick(cityDetails: {
+    lat: string;
+    lon: string;
+    name: string;
+    country: string;
+  }) {
     // console.error(city);
-    this.router.navigate([`city`], {
-      queryParams: {
-        lat: cityDetails.lat,
-        lon: cityDetails.lon,
-        name: cityDetails.city,
-        country: cityDetails.country,
-      },
-    });
+    this._store.dispatch(
+      cityClick({ city: { ...cityDetails } })
+    );
   }
 }

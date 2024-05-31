@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, FormGroup } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormControl,
+  FormGroup,
+} from '@angular/forms';
 import { WeatherService } from '../services/weather.service';
 import { City } from './city';
 import {
@@ -13,6 +17,8 @@ import {
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { ThemeService } from '../services/theme.service';
+import { Store } from '@ngrx/store';
+import { cityClick } from '../store/city/city.actions';
 
 @Component({
   selector: 'app-weather',
@@ -27,7 +33,8 @@ export class WeatherComponent implements OnInit {
     private fb: UntypedFormBuilder,
     private weatherService: WeatherService,
     private router: Router,
-    private theme: ThemeService
+    private theme: ThemeService,
+    private _store: Store
   ) {}
 
   ngOnInit(): void {
@@ -58,14 +65,16 @@ export class WeatherComponent implements OnInit {
 
   logSelection(data: any, city: City) {
     // console.error(city);
-    this.router.navigate([`city`], {
-      queryParams: {
-        lat: city.coord.lat,
-        lon: city.coord.lon,
-        name: city.name,
-        country: city?.sys?.country,
-      },
-    });
+    this._store.dispatch(
+      cityClick({
+        city: {
+          lat: city.coord.lat,
+          lon: city.coord.lon,
+          name: city.name,
+          country: city?.sys?.country,
+        },
+      })
+    );
   }
 
   getTheme() {
